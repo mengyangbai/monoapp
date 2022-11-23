@@ -1,0 +1,41 @@
+version: 1
+applications:
+  - appRoot: reactapp
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - echo "================="
+            - echo "From react app"
+            - echo "================="
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        files:
+            - '**/*'
+        baseDirectory: build
+      cache:
+        paths:
+            - node_modules/**/*
+  - appRoot: app2
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - echo "================="
+            - echo "From angular app"
+            - echo "================="
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        files:
+            - '**/*'
+        baseDirectory: dist/app2
+      cache:
+        paths:
+            - node_modules/**/*
+    
