@@ -38,4 +38,23 @@ applications:
       cache:
         paths:
             - node_modules/**/*
+  - appRoot: my-app
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - echo "================="
+            - echo "From next app"
+            - echo "================="
+            - npm ci
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        files:
+            - '**/*'
+        baseDirectory: .next
+      cache:
+        paths:
+            - node_modules/**/*
     
